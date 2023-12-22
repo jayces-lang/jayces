@@ -65,3 +65,17 @@ extra:
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/jen-chieh-shen-17a02780/
       name: Linkedin
+
+
+plugins:
+  - search
+  - mkdocs-video:
+      css_style:
+        width: "100%"
+        aspect-ratio: "16/9"
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      htmlmin_opts:
+          remove_comments: true
