@@ -1,0 +1,63 @@
+name: Docs
+
+on:
+  push:
+    branches:
+      - master
+      - docs
+    paths:
+      - '**.yml'
+      - docs/**
+  pull_request:
+    branches:
+      - master
+    paths:
+      - '**.yml'
+      - docs/**
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  publish-doc:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: true
+
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.12' 
+
+    - name: Setup MkDocs
+      run: |
+        pip install mkdocs
+        pip install mkdocs-material
+
+    - name: Check out GitHub page repo
+      uses: actions/checkout@v4
+      with:
+        repository: jayces-lang/jayces-lang.github.io
+        path: jayces-lang.github.io
+        token: ${{ secrets.PAT }}
+
+    - name: Build doc artifacts with MkDocs
+      run: mkdocs build --site-dir ../jayces-lang.github.io
+
+    # TODO: Generate better commit message
+    - name: Publish doc artifacts
+      if: github.ref == 'refs/heads/master'
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add .
+        git commit -F- <<-_UBLT_COMMIT_MSG_
+        auto: ${{ github.event.head_commit.message }}
+
+        SourceCommit: https://github.com/jayces-lang/jayces/commit/${{ github.sha }}
+        _UBLT_COMMIT_MSG_
+        git push
+      working-directory: jayces-lang.github.io

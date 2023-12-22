@@ -1,0 +1,67 @@
+site_name: JayCeS Programming Language
+
+site_url: https://jayces-lang.github.io/
+site_description: General purpose system programming language written using C++ and LLVM
+site_author: jayces-lang
+
+copyright: Copyright &copy; 2023 Shen, Jen-Chieh
+
+repo_name: jayces-lang/jayces
+repo_url: https://github.com/jayces-lang/jayces
+edit_uri: blob/master/docs/
+
+theme:
+  name: material
+  logo: assets/logo.png
+  favicon: assets/logo.png
+
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+
+  font:
+    code: JetBrains Mono
+
+  palette:
+    - scheme: default
+      primary: white
+      accent: orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    - scheme: slate
+      primary: black
+      accent: orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+  features:
+    - header.autohide
+    - navigation.instant
+    - navigation.tracking
+    - navigation.indexes
+    - content.code.annotate
+    - content.code.copy
+
+  plugins:
+    - offline
+
+nav:
+  - Home: index.md
+  - Documentation:
+    - Hello World: reference/hello.md
+  - Contribute: contribution.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/jayces-lang
+      name: Github
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/jenchieh94
+      name: Twitter
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/jen-chieh-shen-17a02780/
+      name: Linkedin
