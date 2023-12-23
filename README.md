@@ -13,6 +13,10 @@
 Work in progress...
 </p>
 
+## 📌 Dependencies
+
+- [llvm-prebuilt](https://github.com/awakecoding/llvm-prebuilt)
+
 ## 🔗 Links
 
 - [Documentation](https://jayces-lang.github.io/)
