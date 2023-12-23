@@ -8,6 +8,9 @@ set(JAYCES_VERSION "${JAYCES_VERSION_MAJOR}.${JAYCES_VERSION_MINOR}.${JAYCES_VER
 
 project(jayces VERSION ${JAYCES_VERSION})
 
+# compilation database
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
+
 # Config C++
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED YES)
@@ -22,14 +25,6 @@ add_compile_options(-Wno-unused-parameter)
 add_compile_options(-Wno-uninitialized)
 add_compile_options(-Wno-missing-field-initializers)
 
-# Check if LLVM Version is valid
-if (${LLVM_PACKAGE_VERSION} VERSION_LESS "14.0")
-  message(FATAL_ERROR "LLVM version is too low, need at last v14.0")
-endif()
-
-# dependencies
-find_package(unofficial-sqlite3 CONFIG REQUIRED)
-
 # executable
 file(GLOB source_files CONFIGURE_DEPENDS
   "${PROJECT_SOURCE_DIR}/src/*.cpp"
@@ -38,4 +33,15 @@ file(GLOB source_files CONFIGURE_DEPENDS
 
 add_executable(${PROJECT_NAME} ${source_files})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE unofficial::sqlite3::sqlite3)
+#target_link_libraries(${PROJECT_NAME} PRIVATE unofficial::sqlite3::sqlite3)
+
+file(GLOB V_GLOB LIST_DIRECTORIES true "lib/**")
+foreach(item ${V_GLOB})
+  if(IS_DIRECTORY ${item})
+	message(STATUS "[+] ${item}")
+	include_directories("${item}/include/")
+	link_directories("${item}/lib/")
+  endif()
+endforeach()
+
+
