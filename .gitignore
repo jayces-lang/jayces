@@ -31,5 +31,12 @@
 *.out
 *.app
 
+# Common
+build/
+
 # MkDocs
 site/
+
+# compilation database
+.cache
+compile_commands.json
