@@ -21,6 +21,11 @@ Work in progress...
 
 - [Documentation](https://jayces-lang.github.io/)
 
+## ✴️ References
+
+- [savi-lang](https://github.com/savi-lang)
+- [anum-lang](https://github.com/amun-lang)
+
 ## ⚜️ License
 
 MIT License
