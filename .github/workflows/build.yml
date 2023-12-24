@@ -59,7 +59,7 @@ jobs:
     - name: Setup VCPKG_ROOT
       run: |
         echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg/" >> $GITHUB_ENV
-        echo ${{ VCPKG_ROOT }}
+        echo ${{ env.VCPKG_ROOT }}
         vcpkg --version
 
     - name: Build Ninja
