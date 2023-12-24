@@ -4,13 +4,9 @@
 
 cmake_minimum_required(VERSION 3.16.0)
 
-# Config Version
-set(JAYCES_VERSION_MAJOR 0)
-set(JAYCES_VERSION_MINOR 1)
-set(JAYCES_VERSION_PATCH 0)
-set(JAYCES_VERSION "${JAYCES_VERSION_MAJOR}.${JAYCES_VERSION_MINOR}.${JAYCES_VERSION_PATCH}")
-
-project(jayces VERSION ${JAYCES_VERSION})
+project("jayces"
+  VERSION 0.1.0
+  LANGUAGES CXX)
 
 # compilation database
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
@@ -50,4 +46,5 @@ foreach(item ${V_GLOB})
   endif()
 endforeach()
 
+# link
 target_link_libraries(${PROJECT_NAME} PRIVATE CLI11::CLI11)

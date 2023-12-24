@@ -53,6 +53,7 @@ jobs:
       
     - name: Build with CMake
       run: |
+        echo ${{ env.VCPKG_ROOT }}
         cmake -S . -B build/ninja/ -GNinja
-        cmake -S . -B build/platform/
+        cmake -S . -B build/${{ runner.os }}/
       
