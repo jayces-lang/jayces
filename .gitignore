@@ -36,7 +36,7 @@ build/
 
 # Libraries
 lib/
-!lib/.gitkeep
+!lib/README.md
 
 # MkDocs
 site/

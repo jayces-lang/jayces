@@ -13,9 +13,13 @@
 Work in progress...
 </p>
 
-## 📌 Dependencies
+## Development
+
+### Prerequisites
 
 - [llvm-prebuilt](https://github.com/awakecoding/llvm-prebuilt)
+- [vcpkg](https://vcpkg.io/) - a cross-platform open source package manager for C++.
+  - [CL11](https://github.com/CLIUtils/CLI11)
 
 ## 🔗 Links
 
@@ -23,8 +27,8 @@ Work in progress...
 
 ## ✴️ References
 
-- [savi-lang](https://github.com/savi-lang)
 - [anum-lang](https://github.com/amun-lang)
+- [savi-lang](https://github.com/savi-lang)
 
 ## ⚜️ License
 
