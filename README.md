@@ -13,9 +13,9 @@
 Work in progress...
 </p>
 
-## Development
+## 🔧 Development
 
-### Prerequisites
+To build this project, you will need the following tools/packages.
 
 - [llvm-prebuilt](https://github.com/awakecoding/llvm-prebuilt)
 - [vcpkg](https://vcpkg.io/) - a cross-platform open source package manager for C++.
