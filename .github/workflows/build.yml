@@ -28,11 +28,11 @@ jobs:
       fail-fast: false
       matrix:
         config:
-        - os: ubuntu-20.04
+        - os: ubuntu-latest
           vcpkg_triplet: x64-linux-release
-        - os: macos-11
+        - os: macos-latest
           vcpkg_triplet: x64-osx-release
-        - os: windows-2019
+        - os: windows-latest
           vcpkg_triplet: x64-windows-release
     steps:
     - uses: actions/checkout@v4
@@ -58,7 +58,9 @@ jobs:
 
     - name: Setup VCPKG_ROOT
       run: |
-        echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg" >> $GITHUB_ENV
+        echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg/" >> $GITHUB_ENV
+        echo ${{ VCPKG_ROOT }}
+        vcpkg --version
 
     - name: Build Ninja
       run: |
