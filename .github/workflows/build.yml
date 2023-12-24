@@ -45,7 +45,7 @@ jobs:
     - name: Install LLVM and Clang
       uses: KyleMayes/install-llvm-action@v1.9.0
       with:
-        version: "16.0"
+        version: "14.0"
 
     - name: vcpkg build
       uses: johnwason/vcpkg-action@v5
@@ -59,9 +59,11 @@ jobs:
     - name: Setup VCPKG_ROOT
       run: |
         echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg" >> $GITHUB_ENV
-        
-    - name: Build with CMake
+
+    - name: Build Ninja
       run: |
         cmake -S . -B build/ninja/ -GNinja
+        
+    - name: Build target
+      run: |
         cmake -S . -B build/${{ runner.os }}/
-      
