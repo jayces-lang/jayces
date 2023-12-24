@@ -37,7 +37,7 @@ jobs:
       uses: lukka/get-cmake@v3.28.1
 
     - name: Install vcpkg
-      uses: lukka/run-vcpkg@v11
+      uses: lukka/run-vcpkg@v11.3
       
     - name: Build with CMake
       run: |
