@@ -58,9 +58,15 @@ jobs:
         token: ${{ github.token }}
 
     - name: Setup VCPKG_ROOT
+      if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
+      run: |
+        echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg/" >> $GITHUB_ENV
+
+    - name: Setup VCPKG_ROOT
+      if: matrix.os == 'windows-latest'
       run: |
         echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg/" >> $env:GITHUB_ENV
-        echo ${{ env.VCPKG_ROOT }}
+        echo this $env:VCPKG_ROOT
         vcpkg --version
 
     - name: Build Ninja
