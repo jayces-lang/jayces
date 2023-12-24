@@ -1,3 +1,5 @@
+# Copyright 2023 the JayCeS authors. All rights reserved. MIT license.
+
 cmake_minimum_required(VERSION 3.16.0)
 
 # Config Version
@@ -25,16 +27,22 @@ add_compile_options(-Wno-unused-parameter)
 add_compile_options(-Wno-uninitialized)
 add_compile_options(-Wno-missing-field-initializers)
 
-# executable
+# vcpkg (preparation)
+include($ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake)
+
+# vcpkg
+find_package(CLI11 CONFIG REQUIRED)
+
+# source files
 file(GLOB source_files CONFIGURE_DEPENDS
   "${PROJECT_SOURCE_DIR}/src/*.cpp"
   "${PROJECT_SOURCE_DIR}/include/*.hpp"
 )
 
+# executable
 add_executable(${PROJECT_NAME} ${source_files})
 
-#target_link_libraries(${PROJECT_NAME} PRIVATE unofficial::sqlite3::sqlite3)
-
+# include and static link
 file(GLOB V_GLOB LIST_DIRECTORIES true "lib/**")
 foreach(item ${V_GLOB})
   if(IS_DIRECTORY ${item})
@@ -44,4 +52,4 @@ foreach(item ${V_GLOB})
   endif()
 endforeach()
 
-
+target_link_libraries(${PROJECT_NAME} PRIVATE CLI11::CLI11)

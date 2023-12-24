@@ -1,3 +1,5 @@
+:: Copyright 2023 the JayCeS authors. All rights reserved. MIT license.
+
 @echo off
 
 cd ../
