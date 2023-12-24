@@ -36,8 +36,14 @@ jobs:
     - name: Install latest CMake and Ninja
       uses: lukka/get-cmake@v3.28.1
 
-    - name: Install vcpkg
-      uses: lukka/run-vcpkg@v11.3
+    - name: Install OpenSSL
+      uses: johnwason/vcpkg-action@v5
+      id: vcpkg
+      with:
+        pkgs: cli11
+        triplet: amd64-windows-static
+        cache-key: ${{ runner.os }}-amd64-vcpkg
+        token: ${{ github.token }}
       
     - name: Build with CMake
       run: |
