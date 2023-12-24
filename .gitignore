@@ -34,6 +34,10 @@
 # Common
 build/
 
+# Libraries
+lib/
+!lib/.gitkeep
+
 # MkDocs
 site/
 
