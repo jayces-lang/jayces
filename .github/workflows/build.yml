@@ -23,11 +23,17 @@ concurrency:
 
 jobs:
   publish-doc:
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.config.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        config:
+        - os: ubuntu-20.04
+          vcpkg_triplet: x64-linux-release
+        - os: macos-11
+          vcpkg_triplet: x64-osx-release
+        - os: windows-2019
+          vcpkg_triplet: x64-windows-release
     steps:
     - uses: actions/checkout@v4
       with:
@@ -36,13 +42,13 @@ jobs:
     - name: Install latest CMake and Ninja
       uses: lukka/get-cmake@v3.28.1
 
-    - name: Install OpenSSL
+    - name: vcpkg build
       uses: johnwason/vcpkg-action@v5
       id: vcpkg
       with:
         pkgs: cli11
-        triplet: amd64-windows-static
-        cache-key: ${{ runner.os }}-amd64-vcpkg
+        triplet: ${{ matrix.config.vcpkg_triplet }}
+        cache-key: ${{ matrix.config.os }}
         token: ${{ github.token }}
       
     - name: Build with CMake
