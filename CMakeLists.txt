@@ -23,11 +23,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 # C++ Compiler options
 add_compile_options(-Wall)
-add_compile_options(-Wextra)
 add_compile_options(-pedantic)
-add_compile_options(-Wno-unused-parameter)
-add_compile_options(-Wno-uninitialized)
-add_compile_options(-Wno-missing-field-initializers)
 
 # vcpkg (preparation)
 include($ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake)
