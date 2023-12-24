@@ -57,13 +57,13 @@ jobs:
         cache-key: ${{ matrix.config.os }}
         token: ${{ github.token }}
 
-    - name: Setup VCPKG_ROOT
-      if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
+    - name: Setup VCPKG_ROOT (Unix)
+      if: matrix.config.os == 'ubuntu-latest' || matrix.config.os == 'macos-latest'
       run: |
         echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg/" >> $GITHUB_ENV
 
-    - name: Setup VCPKG_ROOT
-      if: matrix.os == 'windows-latest'
+    - name: Setup VCPKG_ROOT (Windows)
+      if: matrix.config.os == 'windows-latest'
       run: |
         echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg/" >> $env:GITHUB_ENV
         echo this $env:VCPKG_ROOT
