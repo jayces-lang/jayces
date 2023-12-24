@@ -53,6 +53,7 @@ jobs:
       
     - name: Build with CMake
       run: |
+        echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg" >> "$GITHUB_ENV"
         echo ${{ env.VCPKG_ROOT }}
         cmake -S . -B build/ninja/ -GNinja
         cmake -S . -B build/${{ runner.os }}/
