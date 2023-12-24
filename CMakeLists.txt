@@ -1,4 +1,6 @@
-# Copyright 2023 the JayCeS authors. All rights reserved. MIT license.
+# Copyright 2023 the JayCeS authors. All rights reserved.
+#
+# MIT license.
 
 cmake_minimum_required(VERSION 3.16.0)
 
