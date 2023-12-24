@@ -59,7 +59,7 @@ jobs:
 
     - name: Setup VCPKG_ROOT
       run: |
-        echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg/" >> $GITHUB_ENV
+        echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg/" >> $env:GITHUB_ENV
         echo ${{ env.VCPKG_ROOT }}
         vcpkg --version
 
