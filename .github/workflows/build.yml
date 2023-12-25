@@ -53,7 +53,7 @@ jobs:
     - name: Setup VCPKG_DEFAULT_TRIPLET (macOS)
       if: matrix.config.os == 'macos-latest'
       run: |
-        echo "VCPKG_DEFAULT_TRIPLET=x64-macos" >> $env:GITHUB_ENV
+        echo "VCPKG_DEFAULT_TRIPLET=x64-osx" >> $env:GITHUB_ENV
 
     - name: Build Ninja
       run: |
