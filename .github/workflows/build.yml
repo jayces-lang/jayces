@@ -67,6 +67,9 @@ jobs:
       run: |
         echo "VCPKG_ROOT=${{ github.workspace }}\vcpkg\" >> $env:GITHUB_ENV
 
+    - name: List vcpkg
+      run: vcpkg list
+      
     - name: Build Ninja
       run: |
         cmake -S . -B build/ninja/ -GNinja
