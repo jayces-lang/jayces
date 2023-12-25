@@ -51,7 +51,7 @@ jobs:
         vcpkg list
 
     - name: Setup VCPKG_DEFAULT_TRIPLET (macOS)
-      if: matrix.config.os == 'macos-latest'
+      if: matrix.os == 'macos-latest'
       run: |
         echo "VCPKG_DEFAULT_TRIPLET=x64-osx" >> $env:GITHUB_ENV
 
