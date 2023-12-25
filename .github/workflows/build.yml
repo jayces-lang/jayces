@@ -54,6 +54,7 @@ jobs:
       if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
       run: |
         echo $VCPKG_DEFAULT_TRIPLET
+        echo $PATH
         
     - name: Build Ninja
       run: |
