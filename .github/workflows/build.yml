@@ -45,16 +45,16 @@ jobs:
       with:
         version: "14.0"
 
-    - name: Install Homebrew
-      if: matrix.os == 'macos-latest'
-      run: |
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
     - name: vcpkg install
       run: |
         vcpkg install cli11
         vcpkg list
-      
+
+    - name: Install Homebrew
+      if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
+      run: |
+        echo ${VCPKG_DEFAULT_TRIPLET}
+        
     - name: Build Ninja
       run: |
         cmake -S . -B build/ninja/ -GNinja
