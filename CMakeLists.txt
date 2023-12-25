@@ -22,7 +22,15 @@ add_compile_options(-Wall)
 add_compile_options(-pedantic)
 
 # vcpkg (preparation)
-include($ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake)
+if ($ENV{GITHUB_WORKSPACE})
+  if (WIN32)
+	include($ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake)
+  elseif (APPLE)
+	include($ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake)
+  elseif (UNIX)
+	include($ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake)
+  endif ()
+endif ()
 
 # vcpkg
 find_package(CLI11 CONFIG REQUIRED)

@@ -52,6 +52,8 @@ jobs:
       run: |
         vcpkg install cli11
         vcpkg list
+        echo %VCPKG_ROOT%
+        echo ${VCPKG_ROOT}
       
     - name: Build Ninja
       run: |
