@@ -22,7 +22,7 @@ add_compile_options(-Wall)
 add_compile_options(-pedantic)
 
 # vcpkg (preparation)
-if ($ENV{GITHUB_WORKSPACE})
+if (DEFINED ENV{GITHUB_WORKSPACE})
   message("set ---- GitHub Actions")
   if (WIN32)
 	include(C:/vcpkg/scripts/buildsystems/vcpkg.cmake)
