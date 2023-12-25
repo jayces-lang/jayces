@@ -53,7 +53,7 @@ jobs:
     - name: Install Homebrew
       if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
       run: |
-        echo ${VCPKG_DEFAULT_TRIPLET}
+        echo $VCPKG_DEFAULT_TRIPLET
         
     - name: Build Ninja
       run: |
