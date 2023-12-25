@@ -48,14 +48,8 @@ jobs:
       with:
         version: "14.0"
 
-    - name: vcpkg build
-      uses: johnwason/vcpkg-action@v5
-      id: vcpkg
-      with:
-        pkgs: cli11
-        triplet: ${{ matrix.config.vcpkg_triplet }}
-        cache-key: ${{ matrix.config.os }}
-        token: ${{ github.token }}
+    - name: vcpkg list version
+      run: vcpkg --version
 
     - name: Setup VCPKG_ROOT (Unix)
       if: matrix.config.os == 'ubuntu-latest' || matrix.config.os == 'macos-latest'
