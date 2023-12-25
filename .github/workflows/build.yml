@@ -50,16 +50,15 @@ jobs:
         vcpkg install cli11
         vcpkg list
 
-    - name: Install Homebrew
-      if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
+    - name: Setup VCPKG_DEFAULT_TRIPLET (macOS)
+      if: matrix.config.os == 'macos-latest'
       run: |
-        echo $VCPKG_DEFAULT_TRIPLET
-        echo $PATH
-        
+        echo "VCPKG_DEFAULT_TRIPLET=x64-macos" >> $env:GITHUB_ENV
+
     - name: Build Ninja
       run: |
         cmake -S . -B build/ninja/ -GNinja
-        
+
     - name: Build target
       run: |
         cmake -S . -B build/${{ runner.os }}/
