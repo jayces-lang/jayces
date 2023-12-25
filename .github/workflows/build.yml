@@ -48,21 +48,10 @@ jobs:
       with:
         version: "14.0"
 
-    - name: vcpkg list version
-      run: vcpkg --version
-
-    - name: Setup VCPKG_ROOT (Unix)
-      if: matrix.config.os == 'ubuntu-latest' || matrix.config.os == 'macos-latest'
+    - name: vcpkg install
       run: |
-        echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg/" >> $GITHUB_ENV
-
-    - name: Setup VCPKG_ROOT (Windows)
-      if: matrix.config.os == 'windows-latest'
-      run: |
-        echo "VCPKG_ROOT=${{ github.workspace }}\vcpkg\" >> $env:GITHUB_ENV
-
-    - name: List vcpkg
-      run: vcpkg list
+        vcpkg install cli11
+        vcpkg list
       
     - name: Build Ninja
       run: |
