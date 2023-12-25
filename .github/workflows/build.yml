@@ -49,6 +49,10 @@ jobs:
       run: |
         vcpkg install cli11
         vcpkg list
+      
+    - name: Build Ninja
+      run: |
+        cmake -S . -B build/ninja/ -GNinja
         
     - name: Build target
       run: |
