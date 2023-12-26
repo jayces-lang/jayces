@@ -4,19 +4,23 @@
  * MIT license.
  */
 
+#include <CLI/CLI.hpp>
 #include <cstring>
 #include <iostream>
-#include <CLI/CLI.hpp>
 
 #include <llvm/ADT/Optional.h>
 
-auto main(int argc, char** argv) -> int {
-    CLI::App app{"App description"};
-    char** original_argv = argv;
+void print_version(int cound) { std::cout << "0.1.0"; }
 
-    std::string filename = "default";
-    app.add_option("-f,--file", filename, "A help string");
+auto main(int argc, char** argv) -> int
+{
+    CLI::App app("");
+
+    app.add_flag_function("-v", print_version, "Show version number");
+
+    CLI::App* sub_compile = app.add_subcommand("compile", "Compile source files to executables with options");
 
     CLI11_PARSE(app, argc, argv);
+
     return 0;
 }
