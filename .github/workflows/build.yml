@@ -9,6 +9,8 @@ on:
       - '**.yml'
       - 'include/**'
       - 'src/**'
+      - 'CMakeLists.txt'
+      - '**.cmake'
   pull_request:
     branches:
       - master
@@ -16,6 +18,8 @@ on:
       - '**.yml'
       - 'include/**'
       - 'src/**'
+      - 'CMakeLists.txt'
+      - '**.cmake'
   workflow_dispatch:
 
 concurrency:
