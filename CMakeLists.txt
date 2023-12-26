@@ -4,12 +4,21 @@
 
 cmake_minimum_required(VERSION 3.16.0)
 
+if (DEFINED ENV{GITHUB_WORKSPACE})
+  if (APPLE)
+	set(CMAKE_OSX_ARCHITECTURES "x86_64" CACHE STRING "")
+  endif ()
+endif ()
+
 project("jayces"
   VERSION 0.1.0
   LANGUAGES CXX)
 
-# compilation database
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
+# source files
+file(GLOB source_files CONFIGURE_DEPENDS
+  "${PROJECT_SOURCE_DIR}/src/*.cpp"
+  "${PROJECT_SOURCE_DIR}/include/*.hpp"
+)
 
 # Config C++
 set(CMAKE_CXX_STANDARD 20)
@@ -20,6 +29,12 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 # C++ Compiler options
 add_compile_options(-Wall)
 add_compile_options(-pedantic)
+
+# executable
+add_executable(${PROJECT_NAME} ${source_files})
+
+# compilation database
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
 
 # vcpkg (preparation)
 if (DEFINED ENV{GITHUB_WORKSPACE})
@@ -34,15 +49,6 @@ endif ()
 
 # vcpkg
 find_package(CLI11 CONFIG REQUIRED)
-
-# source files
-file(GLOB source_files CONFIGURE_DEPENDS
-  "${PROJECT_SOURCE_DIR}/src/*.cpp"
-  "${PROJECT_SOURCE_DIR}/include/*.hpp"
-)
-
-# executable
-add_executable(${PROJECT_NAME} ${source_files})
 
 # include and static link
 file(GLOB V_GLOB LIST_DIRECTORIES true "lib/**")
