@@ -5,10 +5,13 @@
 </p>
 
 <p align="center">
-<a href="https://github.com/jayces-lang/jayces/actions/workflows/build.yml"><img src="https://github.com/jayces-lang/jayces/actions/workflows/build.yml/badge.svg"></a>
-<a href="https://github.com/jayces-lang/jayces/actions/workflows/docs.yml"><img src="https://github.com/jayces-lang/jayces/actions/workflows/docs.yml/badge.svg"></a>
 <a href="https://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg"></a>
 <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg"></a>
+</p>
+
+<p align="center">
+<a href="https://github.com/jayces-lang/jayces/actions/workflows/build.yml"><img src="https://github.com/jayces-lang/jayces/actions/workflows/build.yml/badge.svg"></a>
+<a href="https://github.com/jayces-lang/jayces/actions/workflows/docs.yml"><img src="https://github.com/jayces-lang/jayces/actions/workflows/docs.yml/badge.svg"></a>
 </p>
 
 <p align="center">
