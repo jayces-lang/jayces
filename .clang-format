@@ -1,8 +1,10 @@
 BasedOnStyle: LLVM
 IndentWidth: 4
 AllowShortCaseLabelsOnASingleLine: true
-ColumnLimit: 100
+ColumnLimit: 80
 FixNamespaceComments: false
 PointerAlignment: Left
 BreakBeforeBraces: Stroustrup
 AlwaysBreakTemplateDeclarations: true
+AccessModifierOffset: -4
+AllowShortFunctionsOnASingleLine: Empty

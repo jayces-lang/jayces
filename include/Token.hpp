@@ -1,10 +1,9 @@
-#ifndef __TOKEN_H__
 /**
  * Copyright 2023 the JayCeS authors. All rights reserved.
  *
  * MIT license.
  */
-#define __TOKEN_H__
+#pragma once
 
 namespace jayces {
 /**
@@ -127,5 +126,3 @@ enum TokenKind {
     END_OF_FILE,
 };
 }
-
-#endif /* __TOKEN_H__ */
