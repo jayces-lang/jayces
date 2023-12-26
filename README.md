@@ -5,8 +5,10 @@
 </p>
 
 <p align="center">
-  <a target="_blank" href="https://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg"></a>
-  <a target="_blank" href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg"></a>
+<a href="https://github.com/jayces-lang/jayces/actions/workflows/build.yml"><img src="https://github.com/jayces-lang/jayces/actions/workflows/build.yml/badge.svg"></a>
+<a href="https://github.com/jayces-lang/jayces/actions/workflows/docs.yml"><img src="https://github.com/jayces-lang/jayces/actions/workflows/docs.yml/badge.svg"></a>
+<a href="https://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg"></a>
+<a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg"></a>
 </p>
 
 <p align="center">
@@ -19,7 +21,7 @@ To build this project, you will need the following tools/packages.
 
 - [llvm-prebuilt](https://github.com/awakecoding/llvm-prebuilt)
 - [vcpkg](https://vcpkg.io/) - a cross-platform open source package manager for C++.
-  - [CL11](https://github.com/CLIUtils/CLI11)
+- [CL11](https://github.com/CLIUtils/CLI11)
 
 ## 🔗 Links
 
