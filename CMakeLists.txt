@@ -30,9 +30,6 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 add_compile_options(-Wall)
 add_compile_options(-pedantic)
 
-# executable
-add_executable(${PROJECT_NAME} ${source_files})
-
 # compilation database
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
 
@@ -61,6 +58,10 @@ foreach(item ${V_GLOB})
   endif()
 endforeach()
 
-# link
-target_link_libraries(${PROJECT_NAME} PRIVATE spdlog::spdlog_header_only)
+# Executable
+# XXX: Must be under `find_package` to copy dynamic link files to `bin`.
+add_executable(${PROJECT_NAME} ${source_files})
+
+# Link
+target_link_libraries(${PROJECT_NAME} PRIVATE spdlog::spdlog)
 target_link_libraries(${PROJECT_NAME} PRIVATE CLI11::CLI11)
