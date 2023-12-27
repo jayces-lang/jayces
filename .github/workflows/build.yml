@@ -51,6 +51,7 @@ jobs:
 
     - name: vcpkg install
       run: |
+        vcpkg install spdlog
         vcpkg install cli11
         vcpkg list
 

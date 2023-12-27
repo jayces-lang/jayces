@@ -48,6 +48,7 @@ else ()
 endif ()
 
 # vcpkg
+find_package(spdlog CONFIG REQUIRED)
 find_package(CLI11 CONFIG REQUIRED)
 
 # include and static link
@@ -61,4 +62,5 @@ foreach(item ${V_GLOB})
 endforeach()
 
 # link
+target_link_libraries(${PROJECT_NAME} PRIVATE spdlog::spdlog_header_only)
 target_link_libraries(${PROJECT_NAME} PRIVATE CLI11::CLI11)
