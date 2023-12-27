@@ -1,0 +1,19 @@
+/**
+ * $File: hello.jcs $
+ * $Date: 2023-12-27 01:18:33 $
+ * $Revision: $
+ * $Creator: Jen-Chieh Shen $
+ * $Notice: See LICENSE.txt for modification and distribution information
+ *                   Copyright © 2023 by Shen, Jen-Chieh $
+ */
+
+fun main() int64 {
+    test();
+    sum(1, 2);
+    var x : int64 = 50 + 10;
+    var y : int64 = x;
+    y = test() + 1;
+    var result : int64 = (3 * 10);
+    putchar(97);
+    return test();
+}
