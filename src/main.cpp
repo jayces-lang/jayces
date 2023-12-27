@@ -7,6 +7,7 @@
 #include <CLI/CLI.hpp>
 #include <cstring>
 #include <iostream>
+#include <vector>
 
 #include <llvm/ADT/Optional.h>
 
@@ -15,22 +16,17 @@
 void add_command_compile(CLI::App& app)
 {
     CLI::App* sub = app.add_subcommand(
-        "compile", "Compile source files to executables with options");
+            "compile", "Compile source files to executables with options");
 
-    sub->parse_complete_callback([]() { std::cout << "complete"; });
+    sub->parse_complete_callback([]() { std::cout << "do compile"; });
 }
 
 void add_command_emit_ir(CLI::App& app)
 {
     CLI::App* sub = app.add_subcommand(
-        "emit-ir", "Compile source to llvm ir files with options");
-}
+            "emit-ir", "Compile source to llvm ir files with options");
 
-void add_positional(CLI::App& app)
-{
-    std::string file;
-    CLI::Option* opt =
-        app.add_option("-f,--file,file", file, "program read from script file");
+    sub->parse_complete_callback([]() { std::cout << "do emit-ir"; });
 }
 
 int main(int argc, char** argv)
@@ -39,12 +35,17 @@ int main(int argc, char** argv)
 
     app.set_version_flag("-v,--version", std::string(JAYCES_VERSION));
 
-    add_positional(app);
+    std::vector<std::string> files;
+    CLI::Option*             opt = app.add_option("-f,--file,file", files,
+                                                  "program read from script file");
 
     add_command_compile(app);
     add_command_emit_ir(app);
 
     CLI11_PARSE(app, argc, argv);
+
+    jayces::Logger::Init();
+    JCS_TRACE("File size {}", files.size());
 
     return 0;
 }

@@ -5,12 +5,14 @@
  */
 #pragma once
 
-namespace jayces {
+namespace jayces
+{
 /**
  * @brief Token kind
  * @desc Type of token
  */
-enum TokenKind {
+enum TokenKind
+{
     LOAD,
     IMPORT,
 
@@ -125,4 +127,4 @@ enum TokenKind {
     INVALID,
     END_OF_FILE,
 };
-}
+} // namespace jayces

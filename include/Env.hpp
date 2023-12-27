@@ -5,6 +5,8 @@
  */
 #pragma once
 
+#include "./Logger.hpp"
+
 /**
  * @def JAYCES_APP_DESC
  * @brief Description shown in CLI.
