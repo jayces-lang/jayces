@@ -4,16 +4,8 @@
 
 @echo off
 
-cd ../
+cd ../build/ninja/
 
-echo.
-echo ::Build ninja
-cmake -S . -B build/ninja/ -GNinja
+ninja clean
 
-echo.
-echo ::Gathering compilation database information!
-copy build\ninja\compile_commands.json .
-
-echo.
-echo ::Build MSVC solution
-cmake -S . -B build/windows/
+ninja
