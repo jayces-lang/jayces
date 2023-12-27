@@ -45,7 +45,7 @@ int main(int argc, char** argv)
     CLI11_PARSE(app, argc, argv);
 
     jayces::Logger::Init();
-    JCS_TRACE("File size {}", files.size());
+    JCS_ERROR("File size {}", files.size());
 
     return 0;
 }
