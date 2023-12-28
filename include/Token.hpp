@@ -5,14 +5,14 @@
  */
 #pragma once
 
-namespace jayces
-{
+#include <unordered_map>
+
+namespace jayces {
 /**
  * @brief Token kind
  * @desc Type of token
  */
-enum TokenKind
-{
+enum TokenKind {
     LOAD,
     IMPORT,
 
@@ -127,4 +127,12 @@ enum TokenKind
     INVALID,
     END_OF_FILE,
 };
+
+// Used for error messages and debugging
+static std::unordered_map<TokenKind, const char *> token_kind_literal = {
+    { TokenKind::LOAD, "load" },
+    { TokenKind::IMPORT, "import" },
+    { TokenKind::VAR, "var" },
+};
+
 } // namespace jayces

@@ -8,8 +8,7 @@
 
 #include <spdlog/sinks/stdout_color_sinks.h>
 
-namespace jayces
-{
+namespace jayces {
 std::shared_ptr<spdlog::logger> Logger::s_Logger;
 
 void Logger::Init()

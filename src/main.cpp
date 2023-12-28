@@ -4,32 +4,31 @@
  * MIT license.
  */
 
+#include "../include/Env.hpp"
+
 #include <CLI/CLI.hpp>
 #include <cstring>
 #include <iostream>
+#include <llvm/ADT/Optional.h>
 #include <vector>
 
-#include <llvm/ADT/Optional.h>
-
-#include "../include/Env.hpp"
-
-void add_command_compile(CLI::App& app)
+void add_command_compile(CLI::App &app)
 {
-    CLI::App* sub = app.add_subcommand(
-            "compile", "Compile source files to executables with options");
+    CLI::App *sub = app.add_subcommand(
+        "compile", "Compile source files to executables with options");
 
     sub->parse_complete_callback([]() { std::cout << "do compile"; });
 }
 
-void add_command_emit_ir(CLI::App& app)
+void add_command_emit_ir(CLI::App &app)
 {
-    CLI::App* sub = app.add_subcommand(
-            "emit-ir", "Compile source to llvm ir files with options");
+    CLI::App *sub = app.add_subcommand(
+        "emit-ir", "Compile source to llvm ir files with options");
 
     sub->parse_complete_callback([]() { std::cout << "do emit-ir"; });
 }
 
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
     CLI::App app(JAYCES_APP_DESC);
 
@@ -37,8 +36,8 @@ int main(int argc, char** argv)
 
     std::vector<std::string> files;
 
-    CLI::Option* opt = app.add_option("-f,--file,file", files,
-                                      "program read from script file");
+    CLI::Option *opt = app.add_option(
+        "-f,--file,file", files, "program read from script file");
 
     add_command_compile(app);
     add_command_emit_ir(app);

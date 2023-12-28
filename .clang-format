@@ -1,80 +1,74 @@
-DisableFormat: false
-Language: Cpp
-Standard: Cpp11
-IndentWidth: 4
-TabWidth: 4
-UseTab: Never
-ColumnLimit: 80
-ReflowComments: false
-SortIncludes: false
-
-AlignConsecutiveAssignments: true
-AlignConsecutiveDeclarations: true
-AlignEscapedNewlinesLeft: false
-AlignOperands: true
-AlignTrailingComments: true
-AlignAfterOpenBracket: true
-DerivePointerAlignment: false
-PointerAlignment: Left
-IndentCaseLabels: true
-ContinuationIndentWidth: 8
-NamespaceIndentation: Inner
-CompactNamespaces: true
-FixNamespaceComments: true
-AccessModifierOffset: -4
-
-SpaceAfterControlStatementKeyword: false
-SpaceAfterCStyleCast: false
-SpaceBeforeAssignmentOperators: true
-SpaceBeforeParens: Never
-SpaceInEmptyParentheses: false
-SpacesBeforeTrailingComments: 1
-SpacesInAngles: false
-SpacesInCStyleCastParentheses: false
-SpacesInContainerLiterals: false
-SpacesInParentheses: false
-SpacesInSquareBrackets: false
-Cpp11BracedListStyle: true
-
-KeepEmptyLinesAtTheStartOfBlocks: false
-MaxEmptyLinesToKeep: 1
-BinPackArguments: true
-BinPackParameters: true
-AlwaysBreakAfterReturnType: None
+BasedOnStyle: Chromium
+AlignAfterOpenBracket: AlwaysBreak
+AlignConsecutiveAssignments: 'false'
+AlignConsecutiveDeclarations: 'false'
+AlignConsecutiveMacros: 'true'
+AlignEscapedNewlines: 'DontAlign'
+AlignOperands: 'false'
+AlignTrailingComments: 'false'
+AllowAllParametersOfDeclarationOnNextLine: 'false'
+AllowShortBlocksOnASingleLine: 'false'
+AllowShortCaseLabelsOnASingleLine: 'false'
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: 'false'
+AllowShortLoopsOnASingleLine: 'false'
 AlwaysBreakAfterDefinitionReturnType: None
-AlwaysBreakTemplateDeclarations: true
-BreakConstructorInitializersBeforeComma: true
-ConstructorInitializerAllOnOneLineOrOnePerLine: false
-ConstructorInitializerIndentWidth: 8
-
-AllowShortIfStatementsOnASingleLine: false
-AllowShortLoopsOnASingleLine: false
-AllowShortBlocksOnASingleLine: true
-AllowShortCaseLabelsOnASingleLine: true
-AllowAllParametersOfDeclarationOnNextLine: true
-AllowShortFunctionsOnASingleLine: All
-
-BreakBeforeBinaryOperators: false
-BreakBeforeTernaryOperators: false
-BreakStringLiterals: true
-BreakBeforeBraces: Custom
-BraceWrapping:
-    AfterClass: true
-    AfterEnum: true
-    AfterNamespace: true
-    AfterStruct: true
-    AfterUnion: true
-
-    BeforeCatch: true
-    BeforeElse: true
-    IndentBraces: true
-    AfterFunction: true
-    AfterControlStatement: true
-
-# penalties not thought of yet
-PenaltyBreakBeforeFirstCallParameter: 19
-PenaltyBreakComment: 60
-PenaltyBreakString: 1000
-PenaltyBreakFirstLessLess: 120
-PenaltyExcessCharacter: 1000000
-PenaltyReturnTypeOnItsOwnLine: 1000
+AlwaysBreakAfterReturnType: None
+AlwaysBreakBeforeMultilineStrings: 'true'
+BinPackArguments: 'false'
+BinPackParameters: 'false'
+BreakBeforeBinaryOperators: None
+BreakBeforeBraces: WebKit
+BreakBeforeTernaryOperators: 'false'
+ColumnLimit: '80'
+CommentPragmas: '^\\sa'
+ContinuationIndentWidth: '4'
+Cpp11BracedListStyle: 'false'
+DerivePointerAlignment: 'false'
+DisableFormat: 'false'
+IncludeBlocks: Regroup
+IncludeCategories:
+- Regex: ^<internal/(.+)\.h>$
+  Priority: -3
+- Regex: ^<mod_(.+)_private\.h>$
+  Priority: -2
+- Regex: ^<mod_(.+)\.h>$
+  Priority: -1
+- Regex: ^<interface_(.+)\.h>$
+  Priority: 0
+- Regex: ^<fwk_(.+)\.h>$
+  Priority: 1
+- Regex: ^<arch_(.+)\.h>$
+  Priority: 2
+- Regex: ^<fmw_(.+)\.h>$
+  Priority: 3
+- Regex: ^<((std.+)|assert|complex|ctype|errno|fenv|float|inttypes|iso646|limits|locale|math|setjmp|signal|string|tgmath|threads|time|uchar|wchar|wctype|malloc|(sys/.+))\.h>$
+  Priority: 4
+- Regex: ^".+"$
+  Priority: -4
+- Regex: ^<.+>$
+  Priority: -3
+IndentCaseLabels: 'false'
+IndentPPDirectives: AfterHash
+IndentWidth: '4'
+IndentWrappedFunctionNames: 'true'
+KeepEmptyLinesAtTheStartOfBlocks: 'false'
+Language: Cpp
+MaxEmptyLinesToKeep: '1'
+PenaltyBreakBeforeFirstCallParameter: '0'
+PenaltyBreakComment: '300'
+PenaltyBreakFirstLessLess: '120'
+PenaltyBreakString: '1000'
+PenaltyExcessCharacter: '1000000'
+PenaltyReturnTypeOnItsOwnLine: '500000'
+PointerAlignment: Right
+SpaceAfterCStyleCast: 'false'
+SpaceBeforeAssignmentOperators: 'true'
+SpaceBeforeParens: ControlStatements
+SpaceInEmptyParentheses: 'false'
+SpacesBeforeTrailingComments: '1'
+SpacesInCStyleCastParentheses: 'false'
+SpacesInParentheses: 'false'
+SpacesInSquareBrackets: 'false'
+TabWidth: '4'
+UseTab: Never

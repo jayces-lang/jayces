@@ -9,11 +9,9 @@
  * @class Parser
  * @brief Class description...
  */
-class Parser
-{
-private:
-
-public:
+class Parser {
+   private:
+   public:
     Parser();
 
     /* operator */
@@ -21,5 +19,4 @@ public:
     /* setter */
 
     /* getter */
-
 };
