@@ -36,8 +36,9 @@ int main(int argc, char** argv)
     app.set_version_flag("-v,--version", std::string(JAYCES_VERSION));
 
     std::vector<std::string> files;
-    CLI::Option*             opt = app.add_option("-f,--file,file", files,
-                                                  "program read from script file");
+
+    CLI::Option* opt = app.add_option("-f,--file,file", files,
+                                      "program read from script file");
 
     add_command_compile(app);
     add_command_emit_ir(app);
