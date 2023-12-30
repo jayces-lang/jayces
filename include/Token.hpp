@@ -5,7 +5,9 @@
  */
 #pragma once
 
+#include <string>
 #include <unordered_map>
+#include <unordered_set>
 
 namespace jayces {
 /**
@@ -13,126 +15,149 @@ namespace jayces {
  * @desc Type of token
  */
 enum TokenKind {
-    LOAD,
-    IMPORT,
+    k_LOAD,
+    k_IMPORT,
 
-    VAR,
-    CONST,
-    ENUM,
-    TYPE,
-    STRUCT,
-    FUN,
-    OPERATOR,
-    RETURN,
-    IF,
-    ELSE,
-    FOR,
-    WHILE,
-    SWITCH,
-    CAST,
-    DEFER,
+    k_VAR,
+    k_CONST,
+    k_ENUM,
+    k_TYPE,
+    k_STRUCT,
+    k_FUN,
+    k_OPERATOR,
+    k_RETURN,
+    k_IF,
+    k_ELSE,
+    k_FOR,
+    k_WHILE,
+    k_SWITCH,
+    k_CAST,
+    k_DEFER,
 
-    BREAK,
-    CONTINUE,
+    k_BREAK,
+    k_CONTINUE,
 
-    TYPE_SIZE,
-    TYPE_ALLIGN,
-    VALUE_SIZE,
+    k_TYPE_SIZE,
+    k_TYPE_ALLIGN,
+    k_VALUE_SIZE,
 
-    TRUE,
-    FALSE,
-    NULL,
-    UNDEFINED,
+    k_TRUE,
+    k_FALSE,
+    k_NULL,
+    k_UNDEFINED,
 
-    VARARGS,
+    k_VARARGS,
 
-    DOT,
-    DOT_DOT,
-    COMMA,
-    COLON,
-    COLON_COLON,
-    SEMICOLON,
-    AT,
+    k_DOT,
+    k_DOT_DOT,
+    k_COMMA,
+    k_COLON,
+    k_COLON_COLON,
+    k_SEMICOLON,
+    k_AT,
 
-    PLUS,
-    MINUS,
-    STAR,
-    SLASH,
-    PERCENT,
+    k_PLUS,
+    k_MINUS,
+    k_STAR,
+    k_SLASH,
+    k_PERCENT,
 
-    OR,
-    OR_OR,
-    AND,
-    AND_AND,
-    XOR,
+    k_OR,
+    k_OR_OR,
+    k_AND,
+    k_AND_AND,
+    k_XOR,
 
-    NOT,
+    k_NOT,
 
-    EQUAL,
-    EQUAL_EQUAL,
-    BANG,
-    BANG_EQUAL,
-    GREATER,
-    GREATER_EQUAL,
-    SMALLER,
-    SMALLER_EQUAL,
+    k_EQUAL,
+    k_EQUAL_EQUAL,
+    k_BANG,
+    k_BANG_EQUAL,
+    k_GREATER,
+    k_GREATER_EQUAL,
+    k_SMALLER,
+    k_SMALLER_EQUAL,
 
-    RIGHT_SHIFT,
-    RIGHT_SHIFT_EQUAL,
-    LEFT_SHIFT,
-    LEFT_SHIFT_EQUAL,
+    k_RIGHT_SHIFT,
+    k_RIGHT_SHIFT_EQUAL,
+    k_LEFT_SHIFT,
+    k_LEFT_SHIFT_EQUAL,
 
-    PLUS_EQUAL,
-    MINUS_EQUAL,
-    STAR_EQUAL,
-    SLASH_EQUAL,
-    PARCENT_EQUAL,
+    k_PLUS_EQUAL,
+    k_MINUS_EQUAL,
+    k_STAR_EQUAL,
+    k_SLASH_EQUAL,
+    k_PARCENT_EQUAL,
 
-    OR_EQUAL,
-    AND_EQUAL,
-    XOR_EQUAL,
+    k_OR_EQUAL,
+    k_AND_EQUAL,
+    k_XOR_EQUAL,
 
-    PLUS_PLUS,
-    MINUS_MINUS,
+    k_PLUS_PLUS,
+    k_MINUS_MINUS,
 
-    RIGHT_ARROW,
+    k_RIGHT_ARROW,
 
-    OPEN_PAREN,
-    CLOSE_PAREN,
-    OPEN_BRACKET,
-    CLOSE_BRACKET,
-    OPEN_BRACE,
-    CLOSE_BRACE,
+    k_OPEN_PAREN,
+    k_CLOSE_PAREN,
+    k_OPEN_BRACKET,
+    k_CLOSE_BRACKET,
+    k_OPEN_BRACE,
+    k_CLOSE_BRACE,
 
-    IDENTIFIER,
-    STRING,
-    CHARACTER,
+    k_IDENTIFIER,
+    k_STRING,
+    k_CHARACTER,
 
-    INT,
-    INT1,
-    INT8,
-    INT16,
-    INT32,
-    INT64,
+    k_INT,
+    k_INT1,
+    k_INT8,
+    k_INT16,
+    k_INT32,
+    k_INT64,
 
-    UINT8,
-    UINT16,
-    UINT32,
-    UINT64,
+    k_UINT8,
+    k_UINT16,
+    k_UINT32,
+    k_UINT64,
 
-    FLOAT,
-    FLOAT32,
-    FLOAT64,
+    k_FLOAT,
+    k_FLOAT32,
+    k_FLOAT64,
 
-    INVALID,
-    END_OF_FILE,
+    k_INVALID,
+    k_END_OF_FILE,
+};
+
+struct TokenSpan {
+    int file_id;
+    int line_number;
+    int column_start;
+    int column_end;
+};
+
+struct Token {
+    TokenKind kind;
+    TokenSpan position;
+    std::string literal;
 };
 
 // Used for error messages and debugging
 static std::unordered_map<TokenKind, const char *> token_kind_literal = {
-    { TokenKind::LOAD, "load" },
-    { TokenKind::IMPORT, "import" },
-    { TokenKind::VAR, "var" },
+    { TokenKind::k_LOAD, "load" },
+    { TokenKind::k_IMPORT, "import" },
+    { TokenKind::k_VAR, "var" },
+};
+
+static std::unordered_set<TokenKind> unary_operators = {
+    TokenKind::k_MINUS, TokenKind::k_BANG, TokenKind::k_STAR,
+    TokenKind::k_AND,   TokenKind::k_NOT,
+};
+
+static std::unordered_set<TokenKind> overloading_postfix_operators = {
+    TokenKind::k_PLUS_PLUS,
+    TokenKind::k_MINUS_MINUS,
 };
 
 } // namespace jayces
