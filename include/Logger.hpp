@@ -14,11 +14,11 @@ namespace jayces {
  * @brief Class description...
  */
 class Logger {
-   private:
+private:
     /* Variables */
     static std::shared_ptr<spdlog::logger> s_Logger;
 
-   public:
+public:
     static void Init();
 
     inline static std::shared_ptr<spdlog::logger> &GetLogger()
