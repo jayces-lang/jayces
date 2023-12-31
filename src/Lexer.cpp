@@ -60,6 +60,11 @@ TokenSpan Lexer::build_token_span()
     // ..
 }
 
+void Lexer::skip_whitespaces()
+{
+    // ..
+}
+
 bool Lexer::is_source_available()
 {
     return current_position < source_code_length;

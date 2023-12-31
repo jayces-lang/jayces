@@ -44,9 +44,11 @@ private:
 
     TokenSpan build_token_span();
 
+    bool is_source_available();
+
     Token consume_symbol();
 
-    bool is_source_available();
+    void skip_whitespaces();
 
     /* Operators */
 
