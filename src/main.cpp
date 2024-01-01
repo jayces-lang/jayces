@@ -5,6 +5,7 @@
  */
 
 #include "../include/Env.hpp"
+#include "../include/Token.hpp"
 
 #include <CLI/CLI.hpp>
 #include <cstring>

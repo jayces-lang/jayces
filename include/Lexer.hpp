@@ -20,12 +20,19 @@ private:
     /* Variables */
 
     std::string source_code;
+
     int source_file_id;
+
     size_t source_code_length;
+
     size_t start_position;
+
     size_t current_position;
+
     int line_number;
+
     int column_start;
+
     int column_current;
 
 public:
@@ -48,7 +55,17 @@ private:
 
     Token consume_symbol();
 
+    char advance();
+
+    char peek();
+
+    char peek_next();
+
+    bool is_digit(char c);
+
     void skip_whitespaces();
+
+    TokenKind resolve_keyword_token_kind(const char *keyword);
 
     /* Operators */
 
