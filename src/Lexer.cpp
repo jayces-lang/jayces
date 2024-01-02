@@ -94,6 +94,34 @@ bool Lexer::is_digit(char c)
     return '9' >= c && c >= '0';
 }
 
+bool Lexer::is_hex_digit(char c)
+{
+    return is_digit(c) || ('F' >= c && c >= 'A') || ('f' >= c && c >= 'a');
+}
+
+bool Lexer::is_binary_digit(char c)
+{
+    return '1' == c || '0' == c;
+}
+
+bool Lexer::is_octal_digit(char c)
+{
+    return '7' >= c && c >= '0';
+}
+
+bool Lexer::is_alpha(char c)
+{
+    if ('z' >= c && c >= 'a') {
+        return true;
+    }
+    return 'Z' >= c && c >= 'A';
+}
+
+bool Lexer::is_alpha_num(char c)
+{
+    return is_alpha(c) || is_digit(c);
+}
+
 void Lexer::skip_whitespaces()
 {
     while (is_source_available()) {
