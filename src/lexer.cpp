@@ -47,6 +47,15 @@ Token Lexer::scan_next_token()
 
     switch (c) {
         case '(': return build_token(TokenKind::k_OPEN_PAREN);
+        case ')': return build_token(TokenKind::k_CLOSE_PAREN);
+        case '[': return build_token(TokenKind::k_OPEN_BRACKET);
+        case ']': return build_token(TokenKind::k_CLOSE_BRACKET);
+        case '{': return build_token(TokenKind::k_OPEN_BRACE);
+        case '}': return build_token(TokenKind::k_CLOSE_BRACE);
+        case ',': return build_token(TokenKind::k_COMMA);
+        case ';': return build_token(TokenKind::k_SEMICOLON);
+        case '~': return build_token(TokenKind::k_NOT);
+        case '@': return build_token(TokenKind::k_AT);
     }
 }
 
@@ -79,6 +88,16 @@ Token Lexer::build_token(TokenKind kind, std::string literal)
 TokenSpan Lexer::build_token_span()
 {
     // ..
+}
+
+bool Lexer::match(char current)
+{
+    if (!is_source_available() || current != peek()) {
+        return false;
+    }
+    current_position++;
+    column_current++;
+    return true;
 }
 
 char Lexer::advance()
@@ -142,7 +161,30 @@ void Lexer::skip_whitespaces()
     while (is_source_available()) {
         char c = peek();
         switch (c) {
-            // ..
+        case ' ':
+        case '\r':
+        case '\t': advance(); break;
+        case '\n':
+            line_number++;
+            advance();
+            column_current = 0;
+            break;
+        case '/': {
+            if (peek_next() == '/' || peek_next() == '*') {
+                advance();
+            }
+            else {
+                return;
+            }
+            if (match('/')) {
+                skip_single_line_comment();
+            }
+            else if (match('*')) {
+                skip_multi_lines_comment();
+            }
+            break;
+        }
+        default: return;
         }
     }
 }

@@ -55,6 +55,8 @@ private:
 
     Token consume_symbol();
 
+    bool match(char);
+
     char advance();
 
     char peek();
