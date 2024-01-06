@@ -77,6 +77,10 @@ private:
 
     void skip_whitespaces();
 
+    void skip_single_line_comment();
+
+    void skip_multi_lines_comment();
+
     TokenKind resolve_keyword_token_kind(const char *keyword);
 
     /* Operators */

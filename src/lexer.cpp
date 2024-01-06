@@ -46,16 +46,26 @@ Token Lexer::scan_next_token()
     column_current = column_start;
 
     switch (c) {
-        case '(': return build_token(TokenKind::k_OPEN_PAREN);
-        case ')': return build_token(TokenKind::k_CLOSE_PAREN);
-        case '[': return build_token(TokenKind::k_OPEN_BRACKET);
-        case ']': return build_token(TokenKind::k_CLOSE_BRACKET);
-        case '{': return build_token(TokenKind::k_OPEN_BRACE);
-        case '}': return build_token(TokenKind::k_CLOSE_BRACE);
-        case ',': return build_token(TokenKind::k_COMMA);
-        case ';': return build_token(TokenKind::k_SEMICOLON);
-        case '~': return build_token(TokenKind::k_NOT);
-        case '@': return build_token(TokenKind::k_AT);
+    case '(':
+        return build_token(TokenKind::k_OPEN_PAREN);
+    case ')':
+        return build_token(TokenKind::k_CLOSE_PAREN);
+    case '[':
+        return build_token(TokenKind::k_OPEN_BRACKET);
+    case ']':
+        return build_token(TokenKind::k_CLOSE_BRACKET);
+    case '{':
+        return build_token(TokenKind::k_OPEN_BRACE);
+    case '}':
+        return build_token(TokenKind::k_CLOSE_BRACE);
+    case ',':
+        return build_token(TokenKind::k_COMMA);
+    case ';':
+        return build_token(TokenKind::k_SEMICOLON);
+    case '~':
+        return build_token(TokenKind::k_NOT);
+    case '@':
+        return build_token(TokenKind::k_AT);
     }
 }
 
@@ -163,7 +173,9 @@ void Lexer::skip_whitespaces()
         switch (c) {
         case ' ':
         case '\r':
-        case '\t': advance(); break;
+        case '\t':
+            advance();
+            break;
         case '\n':
             line_number++;
             advance();
@@ -172,20 +184,45 @@ void Lexer::skip_whitespaces()
         case '/': {
             if (peek_next() == '/' || peek_next() == '*') {
                 advance();
-            }
-            else {
+            } else {
                 return;
             }
             if (match('/')) {
                 skip_single_line_comment();
-            }
-            else if (match('*')) {
+            } else if (match('*')) {
                 skip_multi_lines_comment();
             }
             break;
         }
-        default: return;
+        default:
+            return;
         }
+    }
+}
+
+void Lexer::skip_single_line_comment()
+{
+    while (is_source_available() && peek() != '\n') {
+        advance();
+    }
+}
+
+void Lexer::skip_multi_lines_comment()
+{
+    while (is_source_available() && (peek() != '*' || peek_next() != '/')) {
+        advance();
+        if (peek() == '\n') {
+            line_number++;
+            column_current = 0;
+        }
+    }
+    advance();
+    advance();
+
+    // If multi line comments end with new line update the line number
+    if (peek() == '\n') {
+        line_number++;
+        column_current = 0;
     }
 }
 
