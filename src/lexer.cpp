@@ -87,17 +87,17 @@ Token Lexer::consume_symbol()
 
 Token Lexer::build_token(TokenKind kind)
 {
-    // ..
+    return build_token(kind, "");
 }
 
 Token Lexer::build_token(TokenKind kind, std::string literal)
 {
-    // ..
+    return { kind, build_token_span(), literal };
 }
 
 TokenSpan Lexer::build_token_span()
 {
-    // ..
+    return { source_file_id, line_number, column_start, column_current };
 }
 
 bool Lexer::match(char current)
@@ -105,8 +105,8 @@ bool Lexer::match(char current)
     if (!is_source_available() || current != peek()) {
         return false;
     }
-    current_position++;
-    column_current++;
+    ++current_position;
+    ++column_current;
     return true;
 }
 
@@ -183,7 +183,7 @@ void Lexer::skip_whitespaces()
             break;
         case '/': {
             if (peek_next() == '/' || peek_next() == '*') {
-                advance();
+                advance(); // Skip next character / or *
             } else {
                 return;
             }
@@ -212,16 +212,16 @@ void Lexer::skip_multi_lines_comment()
     while (is_source_available() && (peek() != '*' || peek_next() != '/')) {
         advance();
         if (peek() == '\n') {
-            line_number++;
+            ++line_number;
             column_current = 0;
         }
     }
-    advance();
-    advance();
+    advance(); // Skip character *
+    advance(); // Skip character /
 
     // If multi line comments end with new line update the line number
     if (peek() == '\n') {
-        line_number++;
+        ++line_number;
         column_current = 0;
     }
 }
