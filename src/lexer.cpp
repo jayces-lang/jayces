@@ -45,33 +45,52 @@ Token Lexer::scan_next_token()
     ++column_start;
     column_current = column_start;
 
-    switch (c) {
-    case '(':
-        return build_token(TokenKind::k_OPEN_PAREN);
-    case ')':
-        return build_token(TokenKind::k_CLOSE_PAREN);
-    case '[':
-        return build_token(TokenKind::k_OPEN_BRACKET);
-    case ']':
-        return build_token(TokenKind::k_CLOSE_BRACKET);
-    case '{':
-        return build_token(TokenKind::k_OPEN_BRACE);
-    case '}':
-        return build_token(TokenKind::k_CLOSE_BRACE);
-    case ',':
-        return build_token(TokenKind::k_COMMA);
-    case ';':
-        return build_token(TokenKind::k_SEMICOLON);
-    case '~':
-        return build_token(TokenKind::k_NOT);
-    case '@':
-        return build_token(TokenKind::k_AT);
-    }
-}
+    TokenKind kind;
+    std::string literal(1, c);
 
-int Lexer::get_source_file_id()
-{
-    // ..
+    switch (c) {
+    // One character token
+    case '(':
+        kind = TokenKind::k_OPEN_PAREN;
+        break;
+    case ')':
+        kind = TokenKind::k_CLOSE_PAREN;
+        break;
+    case '[':
+        kind = TokenKind::k_OPEN_BRACKET;
+        break;
+    case ']':
+        kind = TokenKind::k_CLOSE_BRACKET;
+        break;
+    case '{':
+        kind = TokenKind::k_OPEN_BRACE;
+        break;
+    case '}':
+        kind = TokenKind::k_CLOSE_BRACE;
+        break;
+    case ',':
+        kind = TokenKind::k_COMMA;
+        break;
+    case ';':
+        kind = TokenKind::k_SEMICOLON;
+        break;
+    case '~':
+        kind = TokenKind::k_NOT;
+        break;
+    case '@':
+        kind = TokenKind::k_AT;
+        break;
+    case 's':
+        kind = token_kind_literal_r[literal];
+        break;
+
+    // One or Two character token
+    case '.':
+        return build_token(
+            match('.') ? TokenKind::k_DOT_DOT : TokenKind::k_DOT);
+    }
+
+    return build_token(kind, literal);
 }
 
 Token Lexer::consume_symbol()
@@ -226,11 +245,6 @@ void Lexer::skip_multi_lines_comment()
     }
 }
 
-bool Lexer::is_source_available()
-{
-    return current_position < source_code_length;
-}
-
 TokenKind Lexer::resolve_keyword_token_kind(const char *keyword)
 {
     if (token_kind_literal_r.find(keyword) == token_kind_literal_r.end())
@@ -238,4 +252,13 @@ TokenKind Lexer::resolve_keyword_token_kind(const char *keyword)
     return token_kind_literal_r[keyword];
 }
 
+int Lexer::get_source_file_id()
+{
+    return source_file_id;
+}
+
+bool Lexer::is_source_available()
+{
+    return current_position < source_code_length;
+}
 } // namespace jayces

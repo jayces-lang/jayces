@@ -146,7 +146,7 @@ struct Token {
 };
 
 // Used for error messages and debugging
-static std::unordered_map<TokenKind, const char *> token_kind_literal = {
+static std::unordered_map<TokenKind, std::string> token_kind_literal = {
     { TokenKind::k_LOAD, "load" },
     { TokenKind::k_IMPORT, "import" },
     { TokenKind::k_VAR, "var" },
@@ -254,7 +254,7 @@ static std::unordered_map<TokenKind, const char *> token_kind_literal = {
     { TokenKind::k_INVALID, "Invalid" },
     { TokenKind::k_END_OF_FILE, "End of the file" },
 };
-static std::unordered_map<const char *, TokenKind> token_kind_literal_r =
+static std::unordered_map<std::string, TokenKind> token_kind_literal_r =
     reverse_map(token_kind_literal);
 
 static std::unordered_set<TokenKind> unary_operators = {
