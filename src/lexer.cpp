@@ -46,7 +46,8 @@ Token Lexer::scan_next_token()
     column_current = column_start;
 
     TokenKind kind;
-    std::string literal(1, c);
+    std::string literal1 = std::string() + c;
+    std::string literal2 = std::string() + c + peek();
 
     switch (c) {
     // One character token
@@ -81,7 +82,7 @@ Token Lexer::scan_next_token()
         kind = TokenKind::k_AT;
         break;
     case 's':
-        kind = token_kind_literal_r[literal];
+        kind = token_kind_literal_r[literal1];
         break;
 
     // One or Two character token
