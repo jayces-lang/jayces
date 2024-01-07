@@ -55,6 +55,8 @@ private:
 
     Token consume_symbol();
 
+    Token consume_hex_number();
+
     bool match(char);
 
     char advance();
@@ -63,11 +65,11 @@ private:
 
     char peek_next();
 
-    bool is_hex_digit(char);
-
     bool is_binary_digit(char);
 
     bool is_octal_digit(char);
+
+    bool is_underscore(char);
 
     void skip_whitespaces();
 

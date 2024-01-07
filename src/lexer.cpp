@@ -51,7 +51,7 @@ Token Lexer::scan_next_token()
     std::string c2 = std::string() + c + peek();
 
     switch (c) {
-        case 'A':
+    case 'A':
     case 'B':
     case 'C':
     case 'D':
@@ -103,8 +103,8 @@ Token Lexer::scan_next_token()
     case 'x':
     case 'y':
     case 'z':
-    case '_': return consume_symbol();
-    
+    case '_':
+        return consume_symbol();
     }
 
     // One character token
@@ -127,6 +127,34 @@ Token Lexer::consume_symbol()
     auto literal = source_code.substr(start_position - 1, len);
     auto kind = resolve_keyword_token_kind(literal.c_str());
     return build_token(kind, literal);
+}
+
+auto Lexer::consume_hex_number() -> Token
+{
+    auto has_digits = false;
+    while (std::isxdigit(peek()) or is_underscore(peek())) {
+        advance();
+        has_digits = true;
+    }
+
+    if (!has_digits) {
+        return build_token(
+            TokenKind::k_INVALID,
+            "Missing digits after the integer base prefix");
+    }
+
+    size_t len = current_position - start_position - 1;
+    auto literal = source_code.substr(start_position + 1, len);
+    literal.erase(
+        std::remove(literal.begin(), literal.end(), '_'), literal.end());
+    auto decimal_value = hex_to_decimal(literal);
+
+    if (decimal_value == -1) {
+        return build_token(
+            TokenKind::k_INVALID, "Hex integer literal is too large");
+    }
+
+    return build_token(TokenKind::k_INT, std::to_string(decimal_value));
 }
 
 Token Lexer::build_token(TokenKind kind)
@@ -177,9 +205,9 @@ char Lexer::peek_next()
     return '\0';
 }
 
-bool Lexer::is_hex_digit(char c)
+bool Lexer::is_underscore(char c)
 {
-    return std::isdigit(c) || ('F' >= c && c >= 'A') || ('f' >= c && c >= 'a');
+    return c == '_';
 }
 
 bool Lexer::is_binary_digit(char c)
