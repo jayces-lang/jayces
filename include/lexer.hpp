@@ -5,7 +5,7 @@
  */
 #pragma once
 
-#include "Token.hpp"
+#include "token.hpp"
 
 #include <string>
 #include <vector>
@@ -63,17 +63,11 @@ private:
 
     char peek_next();
 
-    bool is_digit(char);
-
     bool is_hex_digit(char);
 
     bool is_binary_digit(char);
 
     bool is_octal_digit(char);
-
-    bool is_alpha(char);
-
-    bool is_alpha_num(char);
 
     void skip_whitespaces();
 

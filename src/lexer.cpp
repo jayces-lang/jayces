@@ -6,6 +6,8 @@
 
 #include "../include/lexer.hpp"
 
+#include <cctype>
+
 namespace jayces {
 Lexer::Lexer(int source_file_id, std::string source)
     : source_code(std::move(source)),
@@ -45,58 +47,80 @@ Token Lexer::scan_next_token()
     ++column_start;
     column_current = column_start;
 
-    TokenKind kind;
-    std::string literal1 = std::string() + c;
-    std::string literal2 = std::string() + c + peek();
+    std::string c1 = std::string() + c;
+    std::string c2 = std::string() + c + peek();
 
     switch (c) {
-    // One character token
-    case '(':
-        kind = TokenKind::k_OPEN_PAREN;
-        break;
-    case ')':
-        kind = TokenKind::k_CLOSE_PAREN;
-        break;
-    case '[':
-        kind = TokenKind::k_OPEN_BRACKET;
-        break;
-    case ']':
-        kind = TokenKind::k_CLOSE_BRACKET;
-        break;
-    case '{':
-        kind = TokenKind::k_OPEN_BRACE;
-        break;
-    case '}':
-        kind = TokenKind::k_CLOSE_BRACE;
-        break;
-    case ',':
-        kind = TokenKind::k_COMMA;
-        break;
-    case ';':
-        kind = TokenKind::k_SEMICOLON;
-        break;
-    case '~':
-        kind = TokenKind::k_NOT;
-        break;
-    case '@':
-        kind = TokenKind::k_AT;
-        break;
+        case 'A':
+    case 'B':
+    case 'C':
+    case 'D':
+    case 'E':
+    case 'F':
+    case 'G':
+    case 'H':
+    case 'I':
+    case 'J':
+    case 'K':
+    case 'L':
+    case 'M':
+    case 'N':
+    case 'O':
+    case 'P':
+    case 'Q':
+    case 'R':
+    case 'S':
+    case 'T':
+    case 'U':
+    case 'V':
+    case 'W':
+    case 'X':
+    case 'Y':
+    case 'Z':
+    case 'a':
+    case 'b':
+    case 'c':
+    case 'd':
+    case 'e':
+    case 'f':
+    case 'g':
+    case 'h':
+    case 'i':
+    case 'j':
+    case 'k':
+    case 'l':
+    case 'm':
+    case 'n':
+    case 'o':
+    case 'p':
+    case 'q':
+    case 'r':
     case 's':
-        kind = token_kind_literal_r[literal1];
-        break;
-
-    // One or Two character token
-    case '.':
-        return build_token(
-            match('.') ? TokenKind::k_DOT_DOT : TokenKind::k_DOT);
+    case 't':
+    case 'u':
+    case 'v':
+    case 'w':
+    case 'x':
+    case 'y':
+    case 'z':
+    case '_': return consume_symbol();
+    
     }
 
-    return build_token(kind, literal);
+    // One character token
+    if (token_kind_literal_r.find(c1) != token_kind_literal_r.end())
+        return build_token(token_kind_literal_r[c1]);
+
+    // One or Two character(s) token
+    if (token_kind_literal_r.find(c2) != token_kind_literal_r.end())
+        return build_token(token_kind_literal_r[c2]);
+
+    return build_token(TokenKind::k_INVALID, "unexpected character");
 }
 
 Token Lexer::consume_symbol()
 {
-    while (is_alpha_num(peek()) or peek() == '_') {
+    while (std::isalnum(peek()) or peek() == '_') {
         advance();
     }
     size_t len = current_position - start_position + 1;
@@ -153,14 +177,9 @@ char Lexer::peek_next()
     return '\0';
 }
 
-bool Lexer::is_digit(char c)
-{
-    return '9' >= c && c >= '0';
-}
-
 bool Lexer::is_hex_digit(char c)
 {
-    return is_digit(c) || ('F' >= c && c >= 'A') || ('f' >= c && c >= 'a');
+    return std::isdigit(c) || ('F' >= c && c >= 'A') || ('f' >= c && c >= 'a');
 }
 
 bool Lexer::is_binary_digit(char c)
@@ -171,19 +190,6 @@ bool Lexer::is_binary_digit(char c)
 bool Lexer::is_octal_digit(char c)
 {
     return '7' >= c && c >= '0';
-}
-
-bool Lexer::is_alpha(char c)
-{
-    if ('z' >= c && c >= 'a') {
-        return true;
-    }
-    return 'Z' >= c && c >= 'A';
-}
-
-bool Lexer::is_alpha_num(char c)
-{
-    return is_alpha(c) || is_digit(c);
 }
 
 void Lexer::skip_whitespaces()
