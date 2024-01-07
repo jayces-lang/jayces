@@ -27,7 +27,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  publish-doc:
+  build:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
