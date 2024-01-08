@@ -205,21 +205,6 @@ char Lexer::peek_next()
     return '\0';
 }
 
-bool Lexer::is_underscore(char c)
-{
-    return c == '_';
-}
-
-bool Lexer::is_binary_digit(char c)
-{
-    return '1' == c || '0' == c;
-}
-
-bool Lexer::is_octal_digit(char c)
-{
-    return '7' >= c && c >= '0';
-}
-
 void Lexer::skip_whitespaces()
 {
     while (is_source_available()) {
@@ -295,5 +280,47 @@ int Lexer::get_source_file_id()
 bool Lexer::is_source_available()
 {
     return current_position < source_code_length;
+}
+
+bool Lexer::is_underscore(char c)
+{
+    return c == '_';
+}
+
+bool Lexer::is_binary_digit(char c)
+{
+    return '1' == c || '0' == c;
+}
+
+bool Lexer::is_octal_digit(char c)
+{
+    return '7' >= c && c >= '0';
+}
+
+std::int64_t Lexer::hex_to_decimal(const std::string &hex)
+{
+    try {
+        return std::stol(hex, nullptr, 16);
+    } catch (...) {
+        return -1;
+    }
+}
+
+std::int64_t Lexer::binary_to_decimal(const std::string &binary)
+{
+    try {
+        return std::stol(binary, nullptr, 2);
+    } catch (...) {
+        return -1;
+    }
+}
+
+std::int64_t Lexer::octal_to_decimal(const std::string &octal)
+{
+    try {
+        return std::stol(octal, nullptr, 8);
+    } catch (...) {
+        return -1;
+    }
 }
 } // namespace jayces

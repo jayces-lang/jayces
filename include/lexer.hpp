@@ -65,12 +65,6 @@ private:
 
     char peek_next();
 
-    bool is_binary_digit(char);
-
-    bool is_octal_digit(char);
-
-    bool is_underscore(char);
-
     void skip_whitespaces();
 
     void skip_single_line_comment();
@@ -78,6 +72,20 @@ private:
     void skip_multi_lines_comment();
 
     TokenKind resolve_keyword_token_kind(const char *keyword);
+
+    static bool is_underscore(char);
+
+    static bool is_binary_digit(char);
+
+    static bool is_octal_digit(char);
+
+    static auto hex_to_int(char c) -> int8_t;
+
+    static std::int64_t hex_to_decimal(const std::string&);
+
+    static std::int64_t binary_to_decimal(const std::string&);
+
+    static std::int64_t octal_to_decimal(const std::string&);
 
     /* Operators */
 
