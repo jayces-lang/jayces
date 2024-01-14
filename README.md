@@ -39,7 +39,7 @@ To build this project, you will need the following tools/packages.
 
 MIT License
 
-Copyright (c) 2023 Jen-Chieh Shen
+Copyright (c) 2023-present Jen-Chieh Shen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
