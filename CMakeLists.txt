@@ -30,6 +30,9 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 add_compile_options(-Wall)
 add_compile_options(-pedantic)
 
+# properties
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
+
 # compilation database
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
 
