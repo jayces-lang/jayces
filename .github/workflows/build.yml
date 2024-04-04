@@ -45,7 +45,7 @@ jobs:
       uses: lukka/get-cmake@v3.28.1
 
     - name: Install LLVM and Clang
-      uses: KyleMayes/install-llvm-action@v1.9.0
+      uses: KyleMayes/install-llvm-action@v2.0.1
       with:
         version: "14.0"
 
