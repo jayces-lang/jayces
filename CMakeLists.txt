@@ -1,4 +1,4 @@
-# Copyright 2023-2025 the JayCeS authors. All rights reserved.
+# Copyright 2023-2026 the JayCeS authors. All rights reserved.
 #
 # MIT license.
 
