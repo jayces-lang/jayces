@@ -42,7 +42,7 @@ jobs:
         submodules: true
 
     - name: Install latest CMake and Ninja
-      uses: lukka/get-cmake@v4.3.3
+      uses: lukka/get-cmake@v4.3.4
 
     - name: Install LLVM and Clang
       uses: KyleMayes/install-llvm-action@v2.0.9
